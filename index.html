@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rujx</title>
+
+  <style>
+    /* ============================
+       1. GLOBAL / RESET
+       ============================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #fff;
+    }
+
+    .wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* ============================
+       2. CONTACT BAR
+       ============================ */
+    .contact-bar {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .contact-bar a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.2s ease;
+    }
+
+    .contact-bar a:hover {
+      color: #222;
+    }
+
+    .contact-bar .divider {
+      color: #ddd;
+    }
+
+    /* ============================
+       3. HEADER & HERO
+       ============================ */
+    header {
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    header p.subtitle {
+      color: #666;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    /* ============================
+       4. LIST FORMATTING
+       ============================ */
+    .middle {
+      text-align: center;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .middle li {
+      margin-bottom: 6px;
+    }
+
+    .tab-info-list {
+      list-style-position: inside;
+      margin-bottom: 16px;
+      color: #444;
+    }
+
+    .tab-info-list li {
+      margin-bottom: 4px;
+    }
+
+    /* ============================
+       5. DROPDOWNS
+       ============================ */
+    .dropdown {
+      border: 1px solid #eee;
+      border-radius: 4px;
+      margin: 14px 0;
+      overflow: hidden;
+    }
+
+    .dropdown summary {
+      cursor: pointer;
+      padding: 12px 16px;
+      font-weight: bold;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s ease;
+    }
+
+    .dropdown summary:hover {
+      background: #fafafa;
+    }
+
+    .dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .dropdown summary::after {
+      content: "+";
+      color: #888;
+      font-weight: normal;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .dropdown-body {
+      padding: 0 16px 16px;
+      color: #444;
+    }
+
+    .dropdown-body ul {
+      padding-left: 20px;
+    }
+
+    .dropdown-body li {
+      margin-bottom: 6px;
+    }
+
+    .code-block {
+      margin: 0 16px 16px;
+      background: #f6f6f6;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 14px;
+      overflow-x: auto;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+      white-space: pre;
+      color: #222;
+    }
+
+    /* ============================
+       6. TAB NAVIGATION
+       ============================ */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-bottom: 1px solid #eee;
+      margin-top: 10px;
+    }
+
+    .tab-button {
+      flex: 1;
+      min-width: 100px;
+      padding: 14px 10px;
+      border: none;
+      background: none;
+      color: #888;
+      font-size: 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tab-button:hover {
+      color: #222;
+    }
+
+    .tab-button.active {
+      color: #222;
+      font-weight: bold;
+      border-bottom: 2px solid #222;
+    }
+
+    /* ============================
+       7. TAB CONTENT
+       ============================ */
+    .tab-content {
+      display: none;
+      padding: 30px 0;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* ============================
+       8. FOOTER
+       ============================ */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 0.85rem;
+    }
+
+    /* ============================
+       9. ROLLING TITLE
+       ============================ */
+    rolling-title {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .tab-content rolling-title,
+    .dropdown-body rolling-title {
+      font-size: 1.4rem;
+    }
+
+    rolling-title .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(-30px) rotate(-360deg);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.4s ease;
+    }
+
+    rolling-title.visible .char {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTACT BAR -->
+  <div class="contact-bar">
+    <a href="mailto:akhilesh.suravarapu1@gmail.com">akhilesh.suravarapu1@gmail.com</a>
+    <span class="divider">·</span>
+    <a href="https://github.com/rujxtastic" target="_blank">GitHub</a>
+    <span class="divider">·</span>
+    <a href="https://www.linkedin.com/in/asuravarapu/" target="_blank">LinkedIn</a>
+    <span class="divider">·</span>
+    <a href="https://api.whatsapp.com/send/?phone=447305150977" target="_blank">+44 7305150977</a>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <rolling-title>STEM tutoring sessions for 8-18</rolling-title>
+    <p class="subtitle">Akhilesh Suravarapu, 18</p>
+  </header>
+
+  <ul class="middle">
+    <li>Learning STEM at a young age is a great way to get your child involved in the ever-changing world.</li>
+    <li>As AI improves, knowing how to code and understanding code is more important than ever.</li>
+  </ul>
+
+  <div class="wrapper">
+
+    <!-- CREDENTIALS DROPDOWN -->
+    <details class="dropdown">
+      <summary>About me</summary>
+      <div class="dropdown-body">
+        <ul>
+          <li>Studying Mathematics with Computer Science @ University of Southampton (Year 1)</li>
+          <li>A* in A-Level Maths, 9 in GCSE Maths</li>
+          <li>A in A-Level Computer Science, 7 in GCSE Computer Science</li>
+          <li>Worked for 1.5 years at Code Ninjas, teaching children to code</li>
+          <li>Taught maths to year 6 children for 1 year as a school program</li>
+          <li>Links to my projects available on my main website or Github!</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- CATEGORY TABS -->
+    <nav class="tabs">
+      <button class="tab-button active" onclick="showTab('python', this)">Python</button>
+      <button class="tab-button" onclick="showTab('csharp', this)">C#</button>
+      <button class="tab-button" onclick="showTab('scratch', this)">Scratch</button>
+      <button class="tab-button" onclick="showTab('maths', this)">Maths</button>
+      <button class="tab-button" onclick="showTab('cs', this)">Computer Science</button>
+    </nav>
+
+    <!-- TAB PANELS -->
+    <section id="python" class="tab-content active">
+      <ul class="tab-info-list">
+        <li>Group of 5 session: £7 per person (1 hr)</li>
+        <li>No one-on-one session available</li>
+      </ul>
+      <details class="dropdown">
+        <summary>Content preview coming soon!</summary>
+        <div class="dropdown-body">
+          <p>Preview material will be listed here.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="csharp" class="tab-content">
+      <ul class="tab-info-list">
+        <li>Group of 5 session: £7 per person (1 hr)</li>
+        <li>No one-on-one session available</li>
+      </ul>
+      <details class="dropdown">
+        <summary>Content preview coming soon!</summary>
+        <div class="dropdown-body">
+          <p>Preview material will be listed here.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="scratch" class="tab-content">
+      <ul class="tab-info-list">
+        <li>Group of 5 session: £7 per person (1 hr)</li>
+        <li>No one-on-one session available</li>
+      </ul>
+      <details class="dropdown">
+        <summary>Content preview coming soon!</summary>
+        <div class="dropdown-body">
+          <p>Preview material will be listed here.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="maths" class="tab-content">
+      <ul class="tab-info-list">
+        <li>Group of 5 session: £10 per person (1 hr)</li>
+        <li>One-on-one session: £15 per person (1 hr)</li>
+      </ul>
+      <details class="dropdown">
+        <summary>Content preview coming soon!</summary>
+        <div class="dropdown-body">
+          <p>Preview material will be listed here.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="cs" class="tab-content">
+      <ul class="tab-info-list">
+        <li>Group of 5 session: £10 per person (1 hr)</li>
+        <li>One-on-one session: £18 per person (1 hr)</li>
+      </ul>
+      <details class="dropdown">
+        <summary>Content preview coming soon!</summary>
+        <div class="dropdown-body">
+          <p>Preview material will be listed here.</p>
+        </div>
+      </details>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Rujxtastic</p>
+  </footer>
+
+  <!-- TAB SWITCHING LOGIC -->
+  <script>
+    function showTab(tabId, element) {
+      document.querySelectorAll('.tab-content').forEach(function (panel) {
+        panel.classList.remove('active');
+      });
+
+      document.querySelectorAll('.tab-button').forEach(function (btn) {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabId).classList.add('active');
+      if (element) {
+        element.classList.add('active');
+      }
+    }
+  </script>
+
+  <!-- ROLLING TITLE LOGIC -->
+  <script>
+    document.querySelectorAll('rolling-title').forEach(function (title) {
+      var text = title.textContent;
+      title.textContent = '';
+
+      Array.from(text).forEach(function (ch, i) {
+        var span = document.createElement('span');
+        span.className = 'char';
+        span.style.transitionDelay = (i * 40) + 'ms';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        title.appendChild(span);
+      });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle('visible', entry.isIntersecting);
+        });
+      }, { threshold: 0.4 });
+
+      observer.observe(title);
+    });
+  </script>
+
+</body>
+</html>
