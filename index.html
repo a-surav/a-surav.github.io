@@ -224,11 +224,20 @@
     }
 
     .project-card {
+      display: block;
+      text-decoration: none;
       border: 1px solid #eee;
       border-radius: 6px;
       padding: 18px;
       margin-bottom: 16px;
       background: #fafafa;
+      transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: #ccc;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .project-card h3 {
@@ -240,18 +249,6 @@
     .project-card p {
       font-size: 0.95rem;
       color: #555;
-      margin-bottom: 10px;
-    }
-
-    .project-card .tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #666;
-      background: #eaeaea;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-right: 6px;
     }
 
     /* ============================
@@ -294,7 +291,6 @@
 </head>
 <body>
 
-  <!-- CONTACT BAR -->
   <div class="contact-bar">
     <a href="mailto:akhilesh.suravarapu1@gmail.com">akhilesh.suravarapu1@gmail.com</a>
     <span class="divider">·</span>
@@ -305,14 +301,11 @@
     <a href="https://api.whatsapp.com/send/?phone=447305150977" target="_blank">+44 7305150977</a>
   </div>
 
-  <!-- SITE NAVIGATION (TOP SWITCHER) -->
   <nav class="site-nav">
     <button class="site-nav-btn active" onclick="switchPage('tutoring-page', this)">Tutoring Info</button>
+    <button class="site-nav-btn" onclick="switchPage('projects-page', this)">My Projects</button>
   </nav>
 
-  <!-- ==========================================
-       PAGE 1: TUTORING SESSIONS
-       ========================================== -->
   <div id="tutoring-page" class="page-view active">
     <header>
       <rolling-title>STEM tutoring sessions for 8-18</rolling-title>
@@ -326,7 +319,6 @@
 
     <div class="wrapper">
 
-      <!-- CREDENTIALS DROPDOWN -->
       <details class="dropdown">
         <summary>About me</summary>
         <div class="dropdown-body">
@@ -336,12 +328,11 @@
             <li>A in A-Level Computer Science, 7 in GCSE Computer Science</li>
             <li>Worked for 1.5 years at Code Ninjas, teaching children to code</li>
             <li>Taught maths to year 6 children for 1 year as a school program</li>
-            <li>Links to my projects available on my main website or Github!</li>
+            <li>Links to my projects available by clicking the "My projects" tab at the top!</li>
           </ul>
         </div>
       </details>
 
-      <!-- CATEGORY TABS -->
       <nav class="tabs">
         <button class="tab-button active" onclick="showTab('python-tut', this)">Python</button>
         <button class="tab-button" onclick="showTab('csharp-tut', this)">C#</button>
@@ -350,7 +341,6 @@
         <button class="tab-button" onclick="showTab('cs-tut', this)">Computer Science</button>
       </nav>
 
-      <!-- TAB PANELS -->
       <section id="python-tut" class="tab-content active">
         <ul class="tab-info-list">
           <li>Group of 5 session: £7 per person (1 hr)</li>
@@ -419,10 +409,166 @@
     </div>
   </div>
 
-  <!-- ==========================================
-       PAGE 2: PROJECTS SHOWCASE
-       ========================================== -->
-  
+  <div id="projects-page" class="page-view">
+    <header>
+      <rolling-title>Past Projects</rolling-title>
+      <div>A quick showcase of my best projects!</div>
+      <p class="subtitle">WIP: Work in progress. Either incomplete or not yet public.</p>
+    </header>
+
+    <div class="wrapper">
+
+      <nav class="tabs">
+        <button class="tab-button active" onclick="showTab('python-proj', this)">Python</button>
+        <button class="tab-button" onclick="showTab('csharp-proj', this)">C#</button>
+        <button class="tab-button" onclick="showTab('scratch-proj', this)">Scratch</button>
+        <button class="tab-button" onclick="showTab('other-proj', this)">Other</button>
+      </nav>
+
+      <section id="python-proj" class="tab-content active">
+        <a href="https://github.com/rujxtastic/midifier" target="_blank" class="project-card">
+          <h3>Audio into sheet music converter</h3>
+          <p>An application that allows audio played on an instrument to be turned into musical notes. The most complex project I've completed.</p>
+        </a>
+
+        <a target="_blank" class="project-card">
+          <h3>WIP: Unogrid</h3>
+          <p>A game inspired by Geogrid - guess the only country that fits into both categories.</p>
+        </a>
+
+
+      </section>
+
+      <section id="csharp-proj" class="tab-content">
+        <a target="_blank" class="project-card">
+          <h3>WIP: Java seed mapper</h3>
+          <p>Reverses the usually irreversible hash function in Java: originally to find Minecraft seeds that map to the number 0.</p>
+        </a>
+
+        <a target="_blank" class="project-card">
+          <h3>WIP: Super Tic-Tac-Toe</h3>
+          <p>Tic-Tac-Toe with 81 squares and a complex ruleset, not yet solved by a computer.</p>
+        </a>
+      </section>
+
+      <section id="scratch-proj" class="tab-content">
+        <a href="https://scratch.mit.edu/projects/1368543669/" target="_blank" class="project-card">
+          <h3>Animation software</h3>
+          <p>A simplistic project that allows pixel art to be encoded and replayed as an animation.</p>
+        </a>
+
+        <a href="https://scratch.mit.edu/projects/1376341925/" target="_blank" class="project-card">
+          <h3>Cannon firing</h3>
+          <p>Fire a cannonball by pressing space, using projectile motion calculations.</p>
+        </a>
+      </section>
+
+      <section id="other-proj" class="tab-content">
+        <a href="https://github.com/rujxtastic/rlcontroller" target="_blank" class="project-card">
+          <h3>Gesture-sensing Game controller</h3>
+          <p>A buildable controller for the game Rocket League that moves a car based on real-life movement, such as turning and tilting.</p>
+        </a>
+
+        <a href="https://github.com/rujxtastic/wasd" target="_blank" class="project-card">
+          <h3>4-button keyboard with motor movement</h3>
+          <p>A simple 4-button keyboard that runs away when interacting with keys.</p>
+        </a>
+
+        <a href="https://github.com/rujxtastic/perfect-storage" target="_blank" class="project-card">
+          <h3>Automatic chest-sorter</h3>
+          <p>An agent built for the game Minecraft to automate a mathematically perfect storage system.</p>
+        </a>
+
+        <a target="_blank" class="project-card">
+          <h3>WIP: Youtube channel</h3>
+          <p>A channel where I explain poorly-taught maths concepts in a more digestible way. Currently working on the first video: the Fourier Transform and FFT.</p>
+        </a>
+      </section>
+
+
+
+    </div>
+  </div>
+
+  <footer>
+    <p>I'm still working on this site! Thanks for being patient!</p>
+    <p>&copy; 2026 Akhilesh Suravarapu</p>
+  </footer>
+
+  <script>
+    function switchPage(pageId, element) {
+      document.querySelectorAll('.page-view').forEach(function (page) {
+        page.classList.remove('active');
+      });
+
+      document.querySelectorAll('.site-nav-btn').forEach(function (btn) {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(pageId).classList.add('active');
+      if (element) {
+        element.classList.add('active');
+      }
+
+      // Re-trigger rolling-title observer refresh on page switch
+      initRollingTitles();
+    }
+  </script>
+
+  <script>
+    function showTab(tabId, element) {
+      // Find parent page view to scope tab switching within active page only
+      var activePage = element.closest('.page-view');
+
+      activePage.querySelectorAll('.tab-content').forEach(function (panel) {
+        panel.classList.remove('active');
+      });
+
+      activePage.querySelectorAll('.tab-button').forEach(function (btn) {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabId).classList.add('active');
+      if (element) {
+        element.classList.add('active');
+      }
+    }
+  </script>
+
+  <script>
+    function initRollingTitles() {
+      document.querySelectorAll('rolling-title').forEach(function (title) {
+        if (title.getAttribute('data-initialized')) {
+          // Trigger visibility check for already initialized titles
+          title.classList.add('visible');
+          return;
+        }
+
+        var text = title.textContent;
+        title.textContent = '';
+
+        Array.from(text).forEach(function (ch, i) {
+          var span = document.createElement('span');
+          span.className = 'char';
+          span.style.transitionDelay = (i * 40) + 'ms';
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          title.appendChild(span);
+        });
+
+        title.setAttribute('data-initialized', 'true');
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('visible', entry.isIntersecting);
+          });
+        }, { threshold: 0.1 });
+
+        observer.observe(title);
+      });
+    }
+
+    initRollingTitles();
+  </script>
 
 </body>
 </html>
